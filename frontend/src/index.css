@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -45,4 +50,8 @@ html {
   background-repeat: no-repeat;
   color: #fff;
   font-size: 100px;
+}
+
+.border-this {
+  border: 1px solid red;
 }

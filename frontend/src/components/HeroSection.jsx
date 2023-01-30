@@ -16,7 +16,7 @@ function HeroSection() {
           className="btns"
           buttonStyle="btn--outline"
           buttonSize="btn--large"
-          path="login"
+          path="classify"
         >
           Classify <i class="fa-solid fa-right-to-bracket"></i>
         </Button>

@@ -5,7 +5,7 @@ function AboutScreen() {
     window.scrollTo(0, 0);
   }, []);
 
-  return <div>AboutScreen</div>;
+  return <div className="h-screen">AboutScreen</div>;
 }
 
 export default AboutScreen;

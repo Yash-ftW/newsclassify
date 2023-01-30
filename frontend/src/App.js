@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar";
 import HomeScreen from "./screens/Home";
 import TodoScreen from "./screens/TodoScreen";
 import FeaturesScreen from "./screens/FeaturesScreen";
-import Login from "./screens/Login";
+import Classify from "./screens/ClassifyScreen";
 import AboutScreen from "./screens/AboutScreen";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomeScreen />} exact />
-        <Route path="/login" element={<Login />} />
+        <Route path="/classify" element={<Classify />} />
         <Route path="/todo" element={<TodoScreen />} />
         <Route path="/features" element={<FeaturesScreen />} />
         <Route path="/about" element={<AboutScreen />} />
