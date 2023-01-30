@@ -18,7 +18,7 @@ function HeroSection() {
           buttonSize="btn--large"
           path="classify"
         >
-          Classify <i class="fa-solid fa-right-to-bracket"></i>
+          Classify <i className="fa-solid fa-right-to-bracket"></i>
         </Button>
         <Button
           className="btns"
@@ -26,7 +26,7 @@ function HeroSection() {
           buttonSize="btn--large"
           path="/about"
         >
-          Scrape <i class="fa-solid fa-circle-info"></i>
+          Scrape <i className="fa-solid fa-circle-info"></i>
         </Button>
       </div>
     </div>
