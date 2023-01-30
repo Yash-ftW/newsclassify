@@ -5,6 +5,7 @@ function Classify() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <div className="flex justify-start items-center flex-col h-screen news">
       <div className="w-75 p-2 mt-5 flex justify-center items-center flex-col">
