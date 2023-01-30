@@ -10,7 +10,6 @@ import TodoScreen from "./screens/TodoScreen";
 import FeaturesScreen from "./screens/FeaturesScreen";
 import Classify from "./screens/ClassifyScreen";
 import AboutScreen from "./screens/AboutScreen";
-import Try from "./screens/Try";
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
         <Route path="/todo" element={<TodoScreen />} />
         <Route path="/features" element={<FeaturesScreen />} />
         <Route path="/about" element={<AboutScreen />} />
-        <Route path="/try" element={<Try />} />
       </Routes>
       <Footer />
     </Router>

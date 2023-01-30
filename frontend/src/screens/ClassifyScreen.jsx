@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./ClassifyScreen.css";
 
 function Classify() {
+  const [text, setText] = useState("");
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -13,9 +14,7 @@ function Classify() {
         <div>
           <textarea placeholder="Enter Some News" className="news-text" />
         </div>
-        <button type="button" className="btn-5 m-3">
-          Submit
-        </button>
+        <button className="btn-5 m-3">Submit</button>
       </div>
       <div className="text-2xl">
         The Above News is Classified as : <br />
