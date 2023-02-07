@@ -13,13 +13,13 @@ const StartScreen = () => {
         </div>
         <div className="start-screen">
           <Link to="/classify">
-            <div className="start-card classify">Classify</div>
+            <div className="start-card classify"></div>
           </Link>
           <Link to="/summarize">
-            <div className="start-card summarize">Summarize</div>
+            <div className="start-card summarize"></div>
           </Link>
           <Link to="/scrape">
-            <div className="start-card scrape">Scrape</div>
+            <div className="start-card scrape"></div>
           </Link>
         </div>
       </div>

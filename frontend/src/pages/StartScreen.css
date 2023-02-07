@@ -11,6 +11,7 @@
     align-items: center;
     gap: 50px;
     margin: 100px;
+
 }
 
 .start-card {
@@ -30,6 +31,9 @@
     justify-content: center;
     user-select: none;
     font-weight: bolder;
+    text-decoration: none;
+    color: black;
+    text-align: end;
 }
 
 .start-card:hover {
@@ -42,13 +46,29 @@
 }
 
 .classify {
-    background-image: url(../images/feature_1.png);
+    background-image: url(../images/classify.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .summarize {
-    background-image: url(../images/feature_2.png);
+    background-image: url(../images/summary.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .scrape {
-    background-image: url(../images/feature_3.png);
+    background-image: url(../images/scrape.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media(max-width:720px) {
+    .start-screen {
+        flex-direction: column;
+
+    }
 }
