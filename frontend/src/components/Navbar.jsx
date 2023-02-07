@@ -1,94 +1,81 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import logo from "../images/Logoer.png";
 
-import { Link } from "react-router-dom";
+const Navbar = () => {
+  const [nav, setNav] = useState(false);
+  const [clickNav, setClickNav] = useState(0);
 
-import "./Navbar.css";
-
-function Navbar() {
-  const [click, setClick] = useState(false);
-  const [button, setButton] = useState(true);
-  const [scrolled, setScrolled] = useState(false);
-
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
-
-  const showButton = () => {
-    if (window.innerWidth <= 960) {
-      setButton(false);
+  const changeBackground = () => {
+    if (window.scrollY >= 50) {
+      setNav(true);
     } else {
-      setButton(true);
+      setNav(false);
     }
+
+    // if (window.scrollY >= 200) {
+    //   setClickNav(1);
+    // } else if (window.scrollY >= 300) {
+    //   setClickNav(2);
+    // } else {
+    //   setClickNav(0);
+    // }
   };
-
-  useEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", onScroll);
-
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    showButton();
-  }, []);
-
-  window.addEventListener("resize", showButton);
+  window.addEventListener("scroll", changeBackground);
 
   return (
-    <>
-      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
-        <div className="navbar-container">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            ClassifyMe
-          </Link>
-          <div className="menu-icon" onClick={handleClick}>
-            <i className={click ? "fas fa-times" : "fas fa-bars"} />
-          </div>
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/features"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Features
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/about" className="nav-links" onClick={closeMobileMenu}>
-                About
-              </Link>
-            </li>
-            {/* <li className="nav-item">
-              <Link
-                to="/login"
-                className="nav-links-mobile"
-                onClick={closeMobileMenu}
-              >
-                Login
-              </Link>
-            </li> */}
-          </ul>
-          {/* {button && (
-            <Button buttonStyle="btn--outline" path="/login">
-              Login
-            </Button>
-          )} */}
-        </div>
-      </nav>
-    </>
+    <nav className={nav ? `nav active` : `nav`}>
+      <a href="/#" className="logo" onClick={() => setClickNav(0)}>
+        <img src={logo} alt="" />
+      </a>
+      <input type="checkbox" className="menu-btn" id="menu-btn" />
+      <label className="menu-icon" htmlFor="menu-btn">
+        <span className="nav-icon"></span>
+      </label>
+      <ul className="menu">
+        <li>
+          <a
+            href="/#"
+            className={clickNav === 0 ? `active` : ``}
+            onClick={() => {
+              setClickNav(0);
+            }}
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            href="#features"
+            className={clickNav === 1 ? `active` : ``}
+            onClick={() => setClickNav(1)}
+          >
+            Features
+          </a>
+        </li>
+        <li>
+          <a
+            href="#about"
+            className={clickNav === 2 ? `active` : ``}
+            onClick={() => setClickNav(2)}
+          >
+            About
+          </a>
+        </li>
+        <li>
+          <a
+            href="/start"
+            className={clickNav === 3 ? `active` : ``}
+            onClick={() => setClickNav(3)}
+          >
+            Get Started
+          </a>
+        </li>
+        {/* <li>
+          <a href="/">Download</a>
+        </li> */}
+      </ul>
+    </nav>
   );
-}
+};
 
 export default Navbar;
