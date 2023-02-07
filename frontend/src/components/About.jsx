@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const About = (props) => {
   return (
@@ -12,7 +13,9 @@ const About = (props) => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus,
           id?
         </p>
-        <button>{props.button}</button>
+        <Link to={props.path}>
+          <button>{props.button}</button>
+        </Link>
       </div>
     </div>
   );

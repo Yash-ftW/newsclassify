@@ -13,8 +13,9 @@ const HomeScreen = () => {
       <Feature />
       <About
         image={aboutimage}
-        title="Confused About The News?"
-        button="Start Classifying"
+        title="Analyze The News?"
+        button="Get Started"
+        path="start"
       />
       <Presentation />
       <Contact />

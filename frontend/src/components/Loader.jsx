@@ -3,11 +3,11 @@ import "./Loader.css";
 
 const Loader = () => {
   return (
-    <div class="newtons-cradle">
-      <div class="newtons-cradle__dot"></div>
-      <div class="newtons-cradle__dot"></div>
-      <div class="newtons-cradle__dot"></div>
-      <div class="newtons-cradle__dot"></div>
+    <div className="newtons-cradle">
+      <div className="newtons-cradle__dot"></div>
+      <div className="newtons-cradle__dot"></div>
+      <div className="newtons-cradle__dot"></div>
+      <div className="newtons-cradle__dot"></div>
     </div>
   );
 };
