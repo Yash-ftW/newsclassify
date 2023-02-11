@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+
+<head>
+    <title> Form </title>
+</head>
+
+<body>
+    <center>
+       <a href="" <h1>NEPALI</h1></a>
+
+    <form method="POST" onsubmit=submit()>
+        <textarea id = "textid" name="news" rows="20" cols="75"> {{text}} </textarea>
+        <br>
+        <input type="text" id="summarization_count" name="summarization_count" value="{{summarization_count}}"> 
+        <label for="model">Choose Model:</label>
+            <select name="model" id="model">
+                <option value ="Fast">Fast</option>
+                <option value ="Slow">Slow</option>            
+            </select>
+        <br><br>
+        <br><br>
+        <input type = "submit" value = "Summarize and Classify">
+    </form>
+    <span style="font-family:Arial,font-size:15pt">
+        {{summarized}}
+        <br>
+        {{prediction}}
+        <br>
+        Business   Entertainment   Politics   Sports   Tech<br>
+        {{confidence}}
+    </span>
+</center>
+</body>
+</html>
