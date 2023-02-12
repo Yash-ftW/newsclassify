@@ -391,7 +391,6 @@ nav .menu-btn,
     margin-top: 25px;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
-    overflow: hidden;
     text-overflow: ellipsis;
 }
 

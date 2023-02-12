@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import "./ClassifyScreen.css";
 import axios from "axios";
 import Loader from "../components/Loader";
+import toast, { Toaster } from "react-hot-toast";
 
 const Form = () => {
   const [field1Value, setField1Value] = useState("");
@@ -12,10 +13,6 @@ const Form = () => {
   const [loading, setLoading] = useState(false);
   const [resp, setResp] = useState({});
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const handleField1Change = (event) => {
     setField1Value(event.target.value);
   };
@@ -24,13 +21,14 @@ const Form = () => {
     setField2Value(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-    axios
+    toast.loading("Classifying...");
+    await axios
       .post("http://localhost:5000/api/form", {
-        field1: field1Value,
-        field2: field2Value,
+        news: field1Value,
+        count: field2Value,
       })
       .then((response) => {
         console.log(response.data);
@@ -40,23 +38,28 @@ const Form = () => {
       })
       .catch((err) => {
         console.log(err);
+        toast.error("Something Went Wrong");
       });
+    window.scrollTo(0, document.body.scrollHeight);
   };
 
   return (
     <>
+      <Toaster />
       <Navbar />
       <div className="wrapper">
         <div className="classify-screen">
+          <h1>Classify & Summarize</h1>
           <form onSubmit={handleSubmit}>
             <label>
               <textarea
                 type="text"
                 value={field1Value}
                 onChange={handleField1Change}
-                rows={30}
+                rows={20}
                 cols={100}
                 required
+                placeholder="Enter News"
               />
             </label>
             <br />
@@ -67,20 +70,26 @@ const Form = () => {
                 onChange={handleField2Change}
                 placeholder="Summarized Sentence Count"
                 required
+                min={0}
               />
             </label>
             <br />
             <button type="submit" className="classify-btn">
-              Submit
+              Classify & Summarize
             </button>
           </form>
           {loading ? (
             <Loader />
           ) : (
             <div className={!result ? `classify-hidden` : `classify-active`}>
-              <div>
-                <p>The News Is Classified as : {resp.prediction}</p>
-                <p>Summary:{resp.summarized}</p>
+              <div className="classify-result">
+                <div>
+                  The News Is Classified as : <h3>{resp.prediction}</h3>
+                </div>
+                <div className="classify-summmary" id="cl-summary">
+                  <h3>Summary:</h3>
+                  <p>{resp.summarized}</p>
+                </div>
               </div>
             </div>
           )}

@@ -12,10 +12,18 @@ const Feature = () => {
         <FeatureBox
           image={featureimage}
           title="Classify"
-          detail="Classify any news you want"
+          detail="Bringing Clarity to the News: Automatically Categorize and Organize"
         />
-        <FeatureBox image={featureimage1} title="Summarize" detail="" />
-        <FeatureBox image={featureimage2} title="Scrape" detail="" />
+        <FeatureBox
+          image={featureimage1}
+          title="Summarize"
+          detail="Get the gist in a jiffy: Summarize News Stories Effortlessly with Our News Summarizer."
+        />
+        <FeatureBox
+          image={featureimage2}
+          title="Scrape"
+          detail="Stay Ahead of the Game: Automatically Extract the Latest News with Our News Scraper."
+        />
       </div>
     </div>
   );
