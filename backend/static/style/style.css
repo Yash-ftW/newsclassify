@@ -80,3 +80,10 @@
         background-position: 0% 50%;
     }
 }
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

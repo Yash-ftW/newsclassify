@@ -1,29 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+  <head>
+    <title>Form</title>
+    <link rel="stylesheet" href="../static/style/design.css" />
+  </head>
 
-<head>
-    <title> Form </title>
-</head>
-
-<body>
+  <body>
     <center>
-        <h1>FORM</h1>
-    <form method="POST" onsubmit=submit()>
-        <textarea id = "textid" name="news" rows="20" cols="75"> {{text}} </textarea>
-        <br>
-        <input type="text" id="summarization_count" name="summarization_count" value="{{summarization_count}}"> 
-        <br>
-        <input type = "submit" value = "Summarize and Classify">
-    </form>
-    <span style="font-family:Arial,font-size:15pt">
+      <h1>FORM</h1>
+      <form method="POST" onsubmit="submit()">
+        <textarea id="textid" name="news" rows="20" cols="75">
+ {{text}} 
+</textarea
+        >
+        <br />
+        <input
+          type="text"
+          id="summarization_count"
+          name="summarization_count"
+          value="{{summarization_count}}"
+        />
+        <br />
+        <input type="submit" value="Summarize and Classify" />
+      </form>
+      <span style="font-family:Arial,font-size:15pt">
         {{summarized}}
-        <br>
+        <br />
         {{prediction}}
-        <br>
-        Business   Entertainment   Politics   Sports   Tech<br>
-  
+        <br />
+        Business Entertainment Politics Sports Tech<br />
+
         {{confidence}}
-    </span>
-</center>
-</body>
+      </span>
+    </center>
+  </body>
 </html>

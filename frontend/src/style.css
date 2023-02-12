@@ -3,7 +3,7 @@
 body {
     margin: 0px;
     padding: 0px;
-    background-color: #ffffff;
+    background-color: #eeecec;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -239,8 +239,8 @@ nav .menu-btn,
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 40px;
-    background-color: #ffffff;
+    padding-top: 5px;
+    background-color: #eeecec;
 }
 
 .feat-title::before {
@@ -428,7 +428,7 @@ nav .menu-btn,
     clear: both;
     position: relative;
     height: 200px;
-    margin-top: -200px;
+    bottom: 0;
 }
 
 #contact h3 {

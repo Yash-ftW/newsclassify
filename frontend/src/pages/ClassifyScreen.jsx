@@ -6,8 +6,10 @@ import Loader from "../components/Loader";
 
 function Classify() {
   const [text, setText] = useState(0);
+
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -25,22 +27,26 @@ function Classify() {
     });
     window.scrollTo(100, 100);
   };
+
   return (
     <>
       <Navbar />
-      <div className="classify-screen">
-        <h1>Classify</h1>
-        <textarea rows={30} cols={100} id="tex"></textarea>
-        <button type="button" className="classify-btn" onClick={handleClick}>
-          Classify
-        </button>
-        {loading ? (
-          <Loader />
-        ) : (
-          <p className={text === 0 ? `classify-hidden` : `classify-active`}>
-            The News Is Classified as : {result}
-          </p>
-        )}
+      <div className="wrapper">
+        <div className="classify-screen">
+          <h1>Classify</h1>
+          <textarea rows={30} cols={100} id="tex"></textarea>
+
+          <button type="button" className="classify-btn" onClick={handleClick}>
+            Classify
+          </button>
+          {loading ? (
+            <Loader />
+          ) : (
+            <p className={text === 0 ? `classify-hidden` : `classify-active`}>
+              The News Is Classified as : {result}
+            </p>
+          )}
+        </div>
       </div>
     </>
   );

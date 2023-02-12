@@ -5,6 +5,7 @@ import HomeScreen from "./pages/HomeScreen";
 import ScrapeScreen from "./pages/ScrapeScreen";
 import StartScreen from "./pages/StartScreen";
 import SummarizeScreen from "./pages/SummarizeScreen";
+import Test from "./pages/Test";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/classify" element={<ClassifyScreen />} />
         <Route path="/summarize" element={<SummarizeScreen />} />
         <Route path="/scrape" element={<ScrapeScreen />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </Router>
   );
