@@ -9,8 +9,8 @@ const FeatureBox = (props) => {
       <div className="s-b-text">
         <h2>{props.title}</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt,
-          possimus.
+          Our news classifier algorithm uses advanced natural language
+          processing techniques
         </p>
       </div>
     </div>
