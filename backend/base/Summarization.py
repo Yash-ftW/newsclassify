@@ -186,40 +186,33 @@ class Summarize:
             sentence_count=self.count_sentence_nep()
             
         
-        if (number > sentence_count):
-            return "ERROR: Summarization line exceeds total sentence count"
+       if (number>sentence_count):
+            print("ERROR: Summarization line exceeds total sentence count")
         
-        if (number == sentence_count):
-            return self.paragraph
+        elif (number == 0):
+            print("ERROR: Chosen Zero")
         
         else:
-            #Each sentence tf_idf
-            each_tfidf=[]
-            tf_idf_score=[]
-            for i in range(len(each_sentence)):
-                each_tfidf.append(self.calc_tf_idf(each_sentence[i]))
-            for i in range(len(each_tfidf)):
-                each_tfidf[i]=np.array(each_tfidf[i])
-                tf_idf_score.append(each_tfidf[i].sum())
-            
-            tf_idf_score=sorted(tf_idf_score)
-            print(tf_idf_score)
-            selection=tf_idf_score[-number:]
-            
-            summarized={}
-            for i in range(sentence_count-1):
-                for j in range(len(selection)-1,-1,-1):
-                    if selection[j]==tf_idf_score[i]:
-                        summarized[i] = each_sentence[i]
-                        break
-                if len(summarized)==number+1:
-                    break
-            #summarized = dict(sorted(summarized.items()))
+            summarized_indexes = {}
+            for index in range(len(each_sentence)):
+                tf_idf = sum(self.calc_tf_idf(each_sentence[index]))
+                summarized_indexes[tf_idf] = index
+            sorted_summarized_indexs = sorted(summarized_indexes.items())[-number:]
+            sorted_summarized_indexs = sorted([(t[1], t[0]) for t in sorted_summarized_indexs])
+            sorted_summarized_indexs = [x[0] for x in sorted_summarized_indexs]
+            summarized = []
+            for index in sorted_summarized_indexs:
+                summarized.append(each_sentence[index]) 
             summarized_str = str()
-            if self.language == "en":
-                for key in summarized:
-                    summarized_str += summarized[key] + ". "
+            if self.language == 'en':
+                for summarized_sentence in summarized:
+                    summarized_str += summarized_sentence
+                    summarized_str += '. '
             else:
-                for key in summarized:
-                    summarized_str += summarized[key] + " | "
-            return summarized_str 
+                for summarized_sentence in summarized:
+                    summarized_str += summarized_sentence
+                    summarized_str += '| '
+                    
+            return summarized_str
+            
+        
