@@ -12,6 +12,7 @@ const Form = () => {
   const [result, setResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [resp, setResp] = useState({});
+  const [conf, setConf] = useState(false);
 
   const handleField1Change = (event) => {
     setField1Value(event.target.value);
@@ -89,6 +90,21 @@ const Form = () => {
                 <div className="classify-summmary" id="cl-summary">
                   <h3>Summary:</h3>
                   <p>{resp.summarized}</p>
+                </div>
+                {/* <h3>Confidence</h3>
+                <div>Business: {JSON.stringify(resp.confidence.business)}</div>
+                <div>Entertainment: {resp.confidence.entertainment}</div>
+                <div>Politics: {resp.confidence.politics}</div>
+                <div>Sport: {resp.confidence.sport}</div>
+                <div>Technology: {resp.confidence.tech}</div> */}
+                <button
+                  onClick={() => setConf(!conf)}
+                  className="classify-alter-btn"
+                >
+                  Click to alter showing Confidence
+                </button>
+                <div className={!conf ? `classify-hidden` : `classify-active`}>
+                  {JSON.stringify(resp.confidence)}
                 </div>
               </div>
             </div>
