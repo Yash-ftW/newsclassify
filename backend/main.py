@@ -2,7 +2,6 @@ from flask import Flask, request, render_template,jsonify
 from base.Classification import Classify
 from base.Summarization import Summarize
 from flask_cors import CORS
-import json
 
 app = Flask(__name__)
 CORS(app)
@@ -15,8 +14,9 @@ def home_page():
 @app.route('/api/form', methods=['POST'])
 def handle_form_data():
     form_data = request.json
-    news = form_data['field1']
-    summarization_count = form_data['field2']
+    news = str(form_data['news'])
+    summarization_count = int(form_data['count']) -1
+
     
     if summarization_count == '':
         summarized_news = Summarize(news).sentence_number(10)
@@ -25,6 +25,7 @@ def handle_form_data():
     
     summarized_news = summarized_news
     prediction ,confidence = Classify(news).Predict_News()
+    print(confidence)
     return jsonify({'text':news,'summarized':summarized_news,'count':summarization_count,'prediction':prediction})
     
    

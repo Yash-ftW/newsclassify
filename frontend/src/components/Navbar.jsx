@@ -45,7 +45,7 @@ const Navbar = () => {
         </li>
         <li>
           <a
-            href="#features"
+            href="/#features"
             className={clickNav === 1 ? `active` : ``}
             onClick={() => setClickNav(1)}
           >
@@ -54,7 +54,7 @@ const Navbar = () => {
         </li>
         <li>
           <a
-            href="#about"
+            href="/#about"
             className={clickNav === 2 ? `active` : ``}
             onClick={() => setClickNav(2)}
           >

@@ -12,9 +12,9 @@ const StartScreen = () => {
           <h1>Choose</h1>
         </div>
         <div className="start-screen">
-          <a href="http://localhost:5000/classifcation">
+          <Link to="/classify">
             <div className="start-card classify"></div>
-          </a>
+          </Link>
           <Link to="/summarize">
             <div className="start-card summarize"></div>
           </Link>

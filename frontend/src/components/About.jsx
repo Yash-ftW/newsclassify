@@ -10,8 +10,8 @@ const About = (props) => {
       <div className="about-text">
         <h2>{props.title}</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus,
-          id?
+          Stay Informed, Effortlessly: Analyze News Stories for Summary and
+          Category with Our News Classifier.
         </p>
         <Link to={props.path}>
           <button>{props.button}</button>

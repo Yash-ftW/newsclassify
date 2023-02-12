@@ -7,11 +7,14 @@ import Loader from "../components/Loader";
 const Form = () => {
   const [field1Value, setField1Value] = useState("");
   const [field2Value, setField2Value] = useState("");
-  const [text, setText] = useState(0);
 
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [resp, setResp] = useState({});
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleField1Change = (event) => {
     setField1Value(event.target.value);
@@ -23,6 +26,7 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
     axios
       .post("http://localhost:5000/api/form", {
         field1: field1Value,
@@ -30,7 +34,13 @@ const Form = () => {
       })
       .then((response) => {
         console.log(response.data);
+        setLoading(false);
         setResp(response.data);
+        setResult(true);
+        window.scrollTo(200, 200);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -52,9 +62,10 @@ const Form = () => {
             <br />
             <label>
               <input
-                type="text"
+                type="number"
                 value={field2Value}
                 onChange={handleField2Change}
+                placeholder="Summarized Sentence Count"
               />
             </label>
             <br />
@@ -62,7 +73,16 @@ const Form = () => {
               Submit
             </button>
           </form>
-          <p>The News Is Classified as : {resp.prediction}</p>
+          {loading ? (
+            <Loader />
+          ) : (
+            <div className={!result ? `classify-hidden` : `classify-active`}>
+              <div>
+                <p>The News Is Classified as : {resp.prediction}</p>
+                <p>Summary:{resp.summarized}</p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
