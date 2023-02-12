@@ -186,7 +186,7 @@ class Summarize:
             sentence_count=self.count_sentence_nep()
             
         
-       if (number>sentence_count):
+        if  (number>sentence_count):
             print("ERROR: Summarization line exceeds total sentence count")
         
         elif (number == 0):
