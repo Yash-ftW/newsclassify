@@ -15,8 +15,9 @@ def home_page():
 @app.route('/api/form', methods=['POST'])
 def handle_form_data():
     form_data = request.json
-    news = form_data['field1']
-    summarization_count = form_data['field2']
+    news = str(form_data['field1'])
+    summarization_count = int(form_data['field2']) -1
+
     
     if summarization_count == '':
         summarized_news = Summarize(news).sentence_number(11)

@@ -4,28 +4,44 @@ import "./ClassifyScreen.css";
 import axios from "axios";
 import Loader from "../components/Loader";
 
-function Classify() {
-  const [text, setText] = useState(0);
+const Form = () => {
+  const [field1Value, setField1Value] = useState("");
+  const [field2Value, setField2Value] = useState("");
 
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [resp, setResp] = useState({});
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleClick = async () => {
+  const handleField1Change = (event) => {
+    setField1Value(event.target.value);
+  };
+
+  const handleField2Change = (event) => {
+    setField2Value(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
     setLoading(true);
-    if (text === 0) {
-      setText(1);
-    } else {
-      setText(0);
-    }
-    await axios.get("/data").then((res) => {
-      setResult(res.data.Hello);
-      setLoading(false);
-    });
-    window.scrollTo(100, 100);
+    axios
+      .post("http://localhost:5000/api/form", {
+        field1: field1Value,
+        field2: field2Value,
+      })
+      .then((response) => {
+        console.log(response.data);
+        setLoading(false);
+        setResp(response.data);
+        setResult(true);
+        window.scrollTo(200, 200);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -33,22 +49,44 @@ function Classify() {
       <Navbar />
       <div className="wrapper">
         <div className="classify-screen">
-          <h1>Classify</h1>
-          <textarea rows={30} cols={100} id="tex"></textarea>
-
-          <button type="button" className="classify-btn" onClick={handleClick}>
-            Classify
-          </button>
+          <form onSubmit={handleSubmit}>
+            <label>
+              <textarea
+                type="text"
+                value={field1Value}
+                onChange={handleField1Change}
+                rows={30}
+                cols={100}
+              />
+            </label>
+            <br />
+            <label>
+              <input
+                type="number"
+                value={field2Value}
+                onChange={handleField2Change}
+                placeholder="Summarized Sentence Count"
+              />
+            </label>
+            <br />
+            <button type="submit" className="classify-btn">
+              Submit
+            </button>
+          </form>
           {loading ? (
             <Loader />
           ) : (
-            <p className={text === 0 ? `classify-hidden` : `classify-active`}>
-              The News Is Classified as : {result}
-            </p>
+            <div className={!result ? `classify-hidden` : `classify-active`}>
+              <div>
+                <p>The News Is Classified as : {resp.prediction}</p>
+                <p>Summary:{resp.summarized}</p>
+              </div>
+            </div>
           )}
         </div>
       </div>
     </>
   );
-}
-export default Classify;
+};
+
+export default Form;
