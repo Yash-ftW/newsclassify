@@ -24,7 +24,6 @@ const Form = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-    toast.loading("Classifying...");
     await axios
       .post("http://localhost:5000/api/form", {
         news: field1Value,
@@ -35,6 +34,7 @@ const Form = () => {
         setLoading(false);
         setResp(response.data);
         setResult(true);
+        toast.success("Classified & Summarized");
       })
       .catch((err) => {
         console.log(err);
