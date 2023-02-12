@@ -186,33 +186,33 @@ class Summarize:
             sentence_count=self.count_sentence_nep()
             
         
-        if (number>sentence_count):
-                print("ERROR: Summarization line exceeds total sentence count")
-            
-            elif (number == 0):
-                print("ERROR: Chosen Zero")
-            
+        if  (number>sentence_count):
+            print("ERROR: Summarization line exceeds total sentence count")
+        
+        elif (number == 0):
+            print("ERROR: Chosen Zero")
+        
+        else:
+            summarized_indexes = {}
+            for index in range(len(each_sentence)):
+                tf_idf = sum(self.calc_tf_idf(each_sentence[index]))
+                summarized_indexes[tf_idf] = index
+            sorted_summarized_indexs = sorted(summarized_indexes.items())[-number:]
+            sorted_summarized_indexs = sorted([(t[1], t[0]) for t in sorted_summarized_indexs])
+            sorted_summarized_indexs = [x[0] for x in sorted_summarized_indexs]
+            summarized = []
+            for index in sorted_summarized_indexs:
+                summarized.append(each_sentence[index]) 
+            summarized_str = str()
+            if self.language == 'en':
+                for summarized_sentence in summarized:
+                    summarized_str += summarized_sentence
+                    summarized_str += '. '
             else:
-                summarized_indexes = {}
-                for index in range(len(each_sentence)):
-                    tf_idf = sum(self.calc_tf_idf(each_sentence[index]))
-                    summarized_indexes[tf_idf] = index
-                sorted_summarized_indexs = sorted(summarized_indexes.items())[-number:]
-                sorted_summarized_indexs = sorted([(t[1], t[0]) for t in sorted_summarized_indexs])
-                sorted_summarized_indexs = [x[0] for x in sorted_summarized_indexs]
-                summarized = []
-                for index in sorted_summarized_indexs:
-                    summarized.append(each_sentence[index]) 
-                summarized_str = str()
-                if self.language == 'en':
-                    for summarized_sentence in summarized:
-                        summarized_str += summarized_sentence
-                        summarized_str += '. '
-                else:
-                    for summarized_sentence in summarized:
-                        summarized_str += summarized_sentence
-                        summarized_str += '| '
-                        
-                return summarized_str
+                for summarized_sentence in summarized:
+                    summarized_str += summarized_sentence
+                    summarized_str += '| '
+                    
+            return summarized_str
                 
             
