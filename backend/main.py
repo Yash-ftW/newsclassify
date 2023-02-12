@@ -2,7 +2,6 @@ from flask import Flask, request, render_template,jsonify
 from base.Classification import Classify
 from base.Summarization import Summarize
 from flask_cors import CORS
-import json
 
 app = Flask(__name__)
 CORS(app)

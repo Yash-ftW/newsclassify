@@ -37,7 +37,6 @@ const Form = () => {
         setLoading(false);
         setResp(response.data);
         setResult(true);
-        window.scrollTo(200, 200);
       })
       .catch((err) => {
         console.log(err);
@@ -57,6 +56,7 @@ const Form = () => {
                 onChange={handleField1Change}
                 rows={30}
                 cols={100}
+                required
               />
             </label>
             <br />
@@ -66,6 +66,7 @@ const Form = () => {
                 value={field2Value}
                 onChange={handleField2Change}
                 placeholder="Summarized Sentence Count"
+                required
               />
             </label>
             <br />

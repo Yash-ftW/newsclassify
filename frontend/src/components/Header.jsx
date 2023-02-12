@@ -7,7 +7,10 @@ const Header = () => {
       <Navbar />
       <div className="name">
         <h1>
-          <span>SNS : Short And Simple </span>
+          <span>
+            SNS : <br />
+            Short And Simple
+          </span>
         </h1>
         <p className="details" style={{ color: "black" }}>
           Welcome to our SNS website, where we summarize long news articles and
