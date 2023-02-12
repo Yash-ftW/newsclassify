@@ -130,6 +130,6 @@ class Classify:
         
         confidence = self.model.predict_proba(tf_idf)
         index = np.argmax(confidence)
-        confidence = [np.around(x*100,2) for x in confidence]
+        confidence = [np.around(x*100,2) for x in confidence][0]
         return(self.category_class[int(index)].upper(),confidence)
             

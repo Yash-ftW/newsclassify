@@ -2,10 +2,10 @@ from flask import Flask, request, render_template,jsonify
 from base.Classification import Classify
 from base.Summarization import Summarize
 from flask_cors import CORS
-
+import json
 app = Flask(__name__)
 CORS(app)
-
+category_class = ['business', 'entertainment', 'politics', 'sport', 'tech']
 @app.route('/data')
 def home_page():
     return {"Hello":"World"}
@@ -16,7 +16,7 @@ def handle_form_data():
     form_data = request.json
     news = str(form_data['news'])
     summarization_count = int(form_data['count']) -1
-
+    confidence_dict = {}
     
     if summarization_count == '':
         summarized_news = Summarize(news).sentence_number(10)
@@ -25,8 +25,9 @@ def handle_form_data():
     
     summarized_news = summarized_news
     prediction ,confidence = Classify(news).Predict_News()
-    print(confidence)
-    return jsonify({'text':news,'summarized':summarized_news,'count':summarization_count,'prediction':prediction})
+    confidence_dict = {category_class:confidence for (category_class,confidence) in zip(category_class,confidence)}
+    print(confidence_dict)
+    return jsonify({'text':news,'summarized':summarized_news,'count':summarization_count,'prediction':prediction,'confidence':confidence_dict})
     
    
 
