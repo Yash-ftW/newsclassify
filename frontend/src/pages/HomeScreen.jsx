@@ -3,6 +3,7 @@ import About from "../components/About";
 import Contact from "../components/Contact";
 import Feature from "../components/Feature";
 import Header from "../components/Header";
+import Presentation from "../components/Presentation";
 import aboutimage from "../images/bg.png";
 
 const HomeScreen = () => {
@@ -16,6 +17,7 @@ const HomeScreen = () => {
         button="Get Started"
         path="start"
       />
+      <Presentation />
       <Contact />
     </>
   );

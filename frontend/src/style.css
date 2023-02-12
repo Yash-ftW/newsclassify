@@ -178,7 +178,7 @@ nav .menu-btn,
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 50px 5% 0px 5%;
+    padding: 50px 5% -1px 5%;
     position: relative;
 }
 
