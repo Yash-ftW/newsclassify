@@ -19,7 +19,7 @@ def handle_form_data():
     summarization_count = form_data['field2']
     
     if summarization_count == '':
-        summarized_news = Summarize(news).sentence_number(11)
+        summarized_news = Summarize(news).sentence_number(10)
     else:
         summarized_news = Summarize(news).sentence_number(int(summarization_count))
     
