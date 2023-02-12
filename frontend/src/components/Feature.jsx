@@ -9,9 +9,13 @@ const Feature = () => {
     <div id="features">
       <h1 className="feat-title">Features</h1>
       <div className="a-container">
-        <FeatureBox image={featureimage} title="Classify" />
-        <FeatureBox image={featureimage1} title="Summarize" />
-        <FeatureBox image={featureimage2} title="Scrape" />
+        <FeatureBox
+          image={featureimage}
+          title="Classify"
+          detail="Classify any news you want"
+        />
+        <FeatureBox image={featureimage1} title="Summarize" detail="" />
+        <FeatureBox image={featureimage2} title="Scrape" detail="" />
       </div>
     </div>
   );

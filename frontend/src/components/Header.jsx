@@ -8,8 +8,9 @@ const Header = () => {
       <div className="name">
         <h1>
           <span>
-            SNS : <br />
-            Short And Simple
+            SNS:
+            <br />
+            Short And Sweet
           </span>
         </h1>
         <p className="details" style={{ color: "black" }}>
