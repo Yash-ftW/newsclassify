@@ -11,7 +11,7 @@ from langdetect import detect
 import numpy as np
 import math
 
-# Loading Nepali words and numbers
+'''# Loading Nepali words and numbers
 
 #stop_words
 stop_words=open("base/nepali_words/stopwords.txt","r",encoding="utf-8")
@@ -27,89 +27,16 @@ nepali_num=nepali_num.split(",")
 nepali_suffix=open("base/nepali_words/suffix.txt","r",encoding="utf-8")
 nepali_suffix=nepali_suffix.read()
 nepali_suffix=nepali_suffix.split("\n")
+'''
 
 class Summarize:
     def __init__(self,paragraph):
         self.paragraph=paragraph
         self.language=detect(self.paragraph)
-        if self.language != "en":
-            self.preparagraph = self.nepali_process_paragraph()
-        else:
-            self.preparagraph = self.english_process_paragraph()
         self.col=[]
-        for t in self.preparagraph.split():
+        for t in self.paragraph.split():
             if t not in self.col:
                 self.col.append(t)
-    
-    def nepali_process_paragraph(self):
-        paragraph=str(self.paragraph)
-        
-        #removing \n and \ufeff
-        remove=['\n','\ufeff']
-        for i in remove:
-            paragraph.replace(i,'')
-        
-        #read stop words
-        #Remove Stop Words
-        #word_tokens = Tokenizer().word_tokenize(text)
-        word_tokens = paragraph.split(" ")
-        filtered_list = [w for w in word_tokens if not w in stop_words]
-        
-        #Remove Nepali numbers
-        num_filter=[]
-        for i in range(0,len(filtered_list)):
-            for j in range(0,len(nepali_num)):
-                if nepali_num[j] in filtered_list[i]:
-                    num_filter.append(filtered_list[i])
-                    break
-        for filter in num_filter:
-            filtered_list.remove(filter)
-        
-        #Remove English numbers
-        num=['0','1','2','3','4','5','6','7','8','9']
-        num_filter=[]
-        for i in range(0,len(filtered_list)):
-            for j in range(0,len(num)):
-                if num[j] in filtered_list[i]:
-                    num_filter.append(filtered_list[i])
-                    break
-        for filter in num_filter:
-            filtered_list.remove(filter)
-        stemmed_string=' '.join(filtered_list)
-        
-        return stemmed_string
-            
-    def english_process_paragraph(self):
-        paragraph=str(self.paragraph)
-        #lowercasing
-        paragraph=paragraph.lower()
-        #Remove Stop Words
-        stop_words=set(stopwords.words('english'))
-        word_tokens = word_tokenize(paragraph)
-        filtered_list = [w for w in word_tokens if not w in stop_words]
-        
-        
-        #Remove numbers and special Symbols
-        #words like 100m 2m were not removed so using this
-        num=['0','1','2','3','4','5','6','7','8','9']
-        num_filter=[]
-        for i in range(0,len(filtered_list)):
-            for j in range(0,len(num)):
-                if num[j] in filtered_list[i]:
-                    num_filter.append(filtered_list[i])
-                    break
-        
-        for filter in num_filter:
-            filtered_list.remove(filter)
-                    
-        filtered_list = [w for w in filtered_list if w.isalnum()]
-        
-        #Lematizing
-        wordnet_lemmatizer=WordNetLemmatizer()
-        lemmatized_list=[wordnet_lemmatizer.lemmatize(w,wordnet.VERB) for w in filtered_list]
-        lemmatized_string=' '.join(lemmatized_list)
-        
-        return lemmatized_string
     
     def calc_idf(self):
         doc_count=len(self.paragraph)
@@ -172,13 +99,11 @@ class Summarize:
         paragraph = self.paragraph
         number = number + 1
         if self.language=="en":
-            processed_paragraph=self.english_process_paragraph()
             each_sentence=paragraph.split(".")
             if "" in each_sentence:
                 each_sentence.remove("")
             sentence_count=self.count_sentence_eng()
         else:
-            processed_paragraph=self.nepali_process_paragraph()
             #paragraph=paragraph.replace("।","|")
             each_sentence=paragraph.split("।")
             if "" in each_sentence:
