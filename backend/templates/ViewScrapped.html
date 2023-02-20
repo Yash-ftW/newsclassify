@@ -10,6 +10,7 @@
                 <td>Source</td>
                 <td>Category</td>
                 <td>Date</td>
+                <td>Confidence</td>
             </thead>
 
             {% for row in rows %}
@@ -21,7 +22,8 @@
                     <td>{{row["link"]}}</td>
                     <td>{{row["source"]}}</td>
                     <td>{{row["category"]}}</td>
-                    <td>{{row["date"]}}
+                    <td>{{row["date"]}}</td>
+                    <td>{{row["confidence"]}}</td>
                 </tr>
             {% endfor %}
         </table>

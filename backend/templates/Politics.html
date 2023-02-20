@@ -1,37 +1,15 @@
-<a href="Tech">Tech</a>
-
-    <html>
-        <body>
-    
-            <table border = 1>
-                <thead>
-                    <td>ID</td>
-                    <td>Title</td>
-                    <td>News</td>
-                    <td>Link</td>
-                    <td>Source</td>
-                    <td>Category</td>
-                    <td>Date</td>
-                </thead>
-    
-                {% for row in rows %}
-                    <tr>
-                        <td>{{row["primary_number"]}}</td>
-    
-                        <td>{{row["title"]}}</td>
-                        <td>{{row["news"]}}</td>
-                        <td>{{row["link"]}}</td>
-                        <td>{{row["source"]}}</td>
-                        <td>{{row["category"]}}</td>
-                        <td>{{row["date"]}}
-                    </tr>
-                {% endfor %}
-            </table>
-    
-            <a href = "/"> Go Back to Home Page </a>
-    
-        </body>
-    </html>
-    
-    
-    <a href="Entertainment">Entertainment</a>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data</title>
+  </head>
+  <body>
+    <h1>Data</h1>
+    <p>Id: {{ data[0] }}</p>
+    <p>Column 1: {{ data[1] }}</p>
+    <p>Column 2: {{ data[2] }}</p>
+    <form action="/get_data/{{ next_id }}" method="get">
+      <button type="submit">Next</button>
+    </form>
+  </body>
+</html>

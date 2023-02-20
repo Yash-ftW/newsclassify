@@ -81,17 +81,21 @@ class Scrape_Nepali_News:
             source = (link.split('.')[0]).split('//')[1]
             primary_number = int(url.split('/')[-1].replace('.html',''))
             date = url.split('/')[4] + '/' + url.split('/')[5] + '/' + url.split('/')[6]
-            category,confidence = Classify(news_str).Predict_News()    
-            self.scraped_dict[count] = {'primary_number':primary_number,'link':link,'title':title,'news':news_str,'source':source,'category':category,'date':date}  
+            category,confidence = Classify(news_str).Predict_News() 
+            confidence = max(confidence)
+            if confidence > 30:
+                self.scraped_dict[count] = {'primary_number':primary_number,'link':link,'title':title,'news':news_str,'source':source,'category':category,'date':date,'confidence':confidence}
+            else:
+                self.scraped_dict[count] = {'primary_number':primary_number,'link':link,'title':title,'news':news_str,'source':source,'category':'OTHERS','date':date,'confidence':confidence}
             count += 1
         
     def create_table(self):
-        table = " CREATE TABLE IF NOT EXISTS nepali_news(primary_number BIGINT PRIMARY KEY UNIQUE,title VARCHAR(100), news VARCHAR(2000), source VARCHAR(100), link VARCHAR(100),category VARCHAR(15),date VARCHAR(25))"
+        table = " CREATE TABLE IF NOT EXISTS nepali_news(primary_number BIGINT PRIMARY KEY UNIQUE,title VARCHAR(100), news VARCHAR(2000), source VARCHAR(100), link VARCHAR(100),category VARCHAR(15),date VARCHAR(25),confidence BIGINT)"
         self.cursor_obj.execute(table)
     
     def update_table(self,key):
         try:
-            self.cursor_obj.execute("INSERT INTO nepali_news (primary_number,title,news,source,link,category,date) VALUES (?,?,?,?,?,?,?)",(self.scraped_dict[key]['primary_number'],self.scraped_dict[key]['title'],self.scraped_dict[key]['news'],self.scraped_dict[key]['source'],self.scraped_dict[key]['link'],self.scraped_dict[key]['category'],self.scraped_dict[key]['date']) )
+            self.cursor_obj.execute("INSERT INTO nepali_news (primary_number,title,news,source,link,category,date,confidence) VALUES (?,?,?,?,?,?,?,?)",(self.scraped_dict[key]['primary_number'],self.scraped_dict[key]['title'],self.scraped_dict[key]['news'],self.scraped_dict[key]['source'],self.scraped_dict[key]['link'],self.scraped_dict[key]['category'],self.scraped_dict[key]['date'],self.scraped_dict[key]['confidence']) )
             self.con.commit()
         except sql.Error as er:
             print(er)

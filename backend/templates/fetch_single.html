@@ -1,0 +1,13 @@
+<div class="container">
+    
+        {{data}}
+
+</div>
+<form method="POST" action="/dynamic_fetch">
+    <input type="hidden" name="next_item_index" value="{{ next_item_index }}">
+    <button type="submit" name="submit_button" class="btn btn-success" value="Next">Next</button>
+</form>
+<form method="POST" action="/dynamic_fetch">
+    <input type="number" name="summarization_count">
+    <button type="submmit" name="submit_button" value="Summarize">Summarize</button>
+</form>

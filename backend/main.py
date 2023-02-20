@@ -56,6 +56,7 @@ def english_submit_form():
     
     summarized_news = summarized_news
     prediction ,confidence = Classify(news).Predict_News()
+    print(max(confidence))
     return render_template('Form.html',text = news, summarized = summarized_news,summarization_count = summarization_count,prediction = prediction,confidence = confidence)
 
 @app.route('/scrape')
@@ -69,11 +70,39 @@ def scrapped_news():
     con.row_factory = sql.Row
     
     cur = con.cursor()
-    cur.execute("SELECT * FROM nepali_news")
+    cur.execute("SELECT * FROM nepali_news ORDER BY confidence DESC LIMIT 1")
     
     rows = cur.fetchall()
     return render_template("ViewScrapped.html",rows = rows)
 
+@app.route('/dynamic_fetch',methods=['GET', 'POST'])
+def fetch_scrapped_news():
+    con = sql.connect('database_scrapy.db')
+    cur = con.cursor()
+    next_item_index = int(request.form.get('next_item_index', 0))
+    con.row_factory = sql.Row
+   #print(con.row_factory)
+    index = 0
+    cur.execute("SELECT * FROM nepali_news ORDER BY confidence DESC ")
+    fetch_row = cur.fetchall()
+    row_dict = {}
+        
+    #print("Total records are",len(fetch_row))
+    
+    for row in fetch_row:
+        row_dict[index] = {'primary_number':row[0],'title':row[1],'news':row[2],'link':row[3],'source':row[4],'category':row[5],'date':row[6],'confidence':row[7]}
+        index += 1
+    #print(row_dict)
+    con.close()
+    if request.method == 'POST':
+        if request.form['submit_button'] == 'Next':
+            return render_template('fetch_single.html',data=row_dict[next_item_index],next_item_index=next_item_index+1)
+        else:
+            sentence_count = int(request.form['summarization_count'])
+            row_dict[next_item_index]['news']=Summarize(row_dict[next_item_index]['news']).sentence_number(sentence_count)
+            return render_template('fetch_single.html',data=row_dict[next_item_index],next_item_index=next_item_index)
+    return render_template('fetch_single.html',data=row_dict[0])
+    
 @app.route('/Entertainment')
 def scrapped_news_entertainment():
     con = sql.connect('database_scrapy.db')
@@ -101,10 +130,16 @@ def scrapped_news_business():
     
     rows = cur.fetchall()
     return render_template("Business.html",rows = rows)
-@app.route('/Politics')
-def scrapped_news_politics():
-    con = sql.connect('database_scrapy.db')
-    con.row_factory = sql.Row
+@app.route('/Politics/<int:offset>')
+def scrapped_news_politics(offset):
+    conn = sql.connect('database_scrapy.db')
+    c = conn.cursor()
+    c.execute('SELECT * FROM nepali_news LIMIT 1 OFFSET ?', (offset,))
+    data = c.fetchone()
+    conn.close()
+    return render_template("Politics.html",data= jsonify(data))
+''' con = sql.connect('database_scrapy.db')
+    con.row_factory = sql.Row1
     
     cur = con.cursor()
     try:
@@ -113,7 +148,9 @@ def scrapped_news_politics():
         print(er)
     
     rows = cur.fetchall()
-    return render_template("Politics.html",rows = rows)
+    return render_template("Politics.html",rows = rows)'''
+   
+
 @app.route('/Tech')
 def scrapped_news_tech():
     con = sql.connect('database_scrapy.db')
