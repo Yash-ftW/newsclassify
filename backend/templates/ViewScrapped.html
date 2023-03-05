@@ -11,6 +11,7 @@
                 <td>Category</td>
                 <td>Date</td>
                 <td>Confidence</td>
+                <td>Summary</td>
             </thead>
 
             {% for row in rows %}
@@ -24,6 +25,7 @@
                     <td>{{row["category"]}}</td>
                     <td>{{row["date"]}}</td>
                     <td>{{row["confidence"]}}</td>
+                    <td>{{row["summary"]}}</td>
                 </tr>
             {% endfor %}
         </table>

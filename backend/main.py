@@ -8,6 +8,8 @@ import sqlite3  as sql
 app = Flask(__name__)
 CORS(app)
 category_class = ['business', 'entertainment', 'politics', 'sport', 'tech']
+global row_dict_flag
+row_dict_flag = None
 @app.route('/data')
 def home_page():
     return {"Hello":"World"}
@@ -70,38 +72,50 @@ def scrapped_news():
     con.row_factory = sql.Row
     
     cur = con.cursor()
-    cur.execute("SELECT * FROM nepali_news ORDER BY confidence DESC LIMIT 1")
+    cur.execute("SELECT * FROM nepali_news ORDER BY confidence DESC ")
     
     rows = cur.fetchall()
     return render_template("ViewScrapped.html",rows = rows)
 
 @app.route('/dynamic_fetch',methods=['GET', 'POST'])
 def fetch_scrapped_news():
-    con = sql.connect('database_scrapy.db')
-    cur = con.cursor()
-    next_item_index = int(request.form.get('next_item_index', 0))
-    con.row_factory = sql.Row
-   #print(con.row_factory)
-    index = 0
-    cur.execute("SELECT * FROM nepali_news ORDER BY confidence DESC ")
-    fetch_row = cur.fetchall()
-    row_dict = {}
+    global next_item_index
+    global row_dict
         
-    #print("Total records are",len(fetch_row))
+    if request.method != 'POST':
+        row_dict = {}
+        con = sql.connect('database_scrapy.db')
+        cur = con.cursor()
+        con.row_factory = sql.Row
     
-    for row in fetch_row:
-        row_dict[index] = {'primary_number':row[0],'title':row[1],'news':row[2],'link':row[3],'source':row[4],'category':row[5],'date':row[6],'confidence':row[7]}
-        index += 1
-    #print(row_dict)
-    con.close()
-    if request.method == 'POST':
+        cur.execute("SELECT * FROM nepali_news ORDER BY confidence DESC")
+        fetch_row = cur.fetchall()
+        index = 0
+        
+        
+        for row in fetch_row:
+            row_dict[index] = {'pk_categoryid':row[0],'title':row[1],'news':row[2],'source':row[3],'link':row[4],'category':row[5],'date':row[6],'confidence':row[7],'summary':row[8]}
+            index += 1
+        
+        #print(row_dict)
+        con.close()
+        
+        next_item_index = 0
+        flag = 1 
+        return render_template('fetch_single.html',data=row_dict[0],news=row_dict[0]['news'])
+    else:    
         if request.form['submit_button'] == 'Next':
-            return render_template('fetch_single.html',data=row_dict[next_item_index],next_item_index=next_item_index+1)
+            next_item_index += 1
+            return render_template('fetch_single.html',data=row_dict[next_item_index],news = row_dict[next_item_index]['news'])
+        if request.form['submit_button'] == 'Previous':
+            next_item_index -= 1
+            return render_template('fetch_single.html',data=row_dict[next_item_index],news = row_dict[next_item_index]['news'])
         else:
             sentence_count = int(request.form['summarization_count'])
-            row_dict[next_item_index]['news']=Summarize(row_dict[next_item_index]['news']).sentence_number(sentence_count)
-            return render_template('fetch_single.html',data=row_dict[next_item_index],next_item_index=next_item_index)
-    return render_template('fetch_single.html',data=row_dict[0])
+            news = Summarize(row_dict[next_item_index]['news']).sentence_number(sentence_count)
+            return render_template('fetch_single.html',data=row_dict[next_item_index],news = news)
+
+        
     
 @app.route('/Entertainment')
 def scrapped_news_entertainment():
