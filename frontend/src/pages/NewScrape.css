@@ -1,0 +1,95 @@
+.scrape-back {
+    position: fixed;
+    height: 64px;
+    width: 64px;
+    top: 30px;
+    left: 30px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    backdrop-filter: blur(2px);
+    border: 1px solid cyan;
+    box-shadow: 2px 2px 5px 0px cyan inset;
+    transition: all 0.3s ease;
+    z-index: 99;
+}
+
+.scrape-back:hover {
+    box-shadow: 2px 0px 5px 0px lightcoral;
+    border-color: lightcoral;
+}
+
+.scrape-arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 8px;
+    transform: rotate(135deg);
+}
+
+.scrape-head-new {
+    color: white;
+    font-size: 48px;
+
+}
+
+.new-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/bg-scrape.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.scrape-box {
+    border: 1px solid;
+    border-color: rgb(102, 207, 207);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 50px;
+    backdrop-filter: blur(3px);
+    border-radius: 32px;
+    transition: all 0.3s ease;
+}
+
+.scrape-box:hover {
+    border-color: lightcoral;
+}
+
+.btn-wrap-new {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-wrap-new a {
+    color: white;
+}
+
+.new-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 199px;
+    height: 60px;
+    border: 1px solid #458FF6;
+    background-color: #458FF6;
+    border-radius: 55px;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+    color: white;
+}
+
+.new-btn:hover {
+    background-color: #244b81;
+}

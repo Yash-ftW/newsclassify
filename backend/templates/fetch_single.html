@@ -1,0 +1,22 @@
+<div class="container">
+        <h2>Category : {{data['category']}}<br></h2>
+        <h3>Title : {{data['title']}}</h3><br>
+        Date : {{data['date']}}<br>
+        <h5>{{news}}</h5><br>
+        <a href={{data['link']}}>Go To News</a><br>
+        Source : {{data['source']}}<br>
+        Confidence Level : {{data['confidence']}}</br>
+        
+
+</div>
+<form method="POST" action="/dynamic_fetch">
+    <input type="hidden" name="next_item_index" value="{{ next_item_index }}">
+    <button type="submit" name="submit_button" class="btn btn-success" value="Next">Next</button>
+</form>
+<form method="POST" action="/dynamic_fetch">
+    <input type="number" name="summarization_count">
+    <button type="submit" name="submit_button" value="Summarize">Summarize</button>
+</form>
+<form method="POST" action="/dynamic_fetch">
+    <button type="submit" name="submit_button" value="Previous">Previous</button>
+</form>

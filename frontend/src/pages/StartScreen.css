@@ -1,0 +1,75 @@
+.start-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+}
+
+.start-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin: 100px;
+}
+
+.start-screen:hover> :not(:hover) {
+  opacity: .4;
+  transform: scale(0.9);
+}
+
+.start-card {
+  box-sizing: border-box;
+  width: 250px;
+  height: 310px;
+  background: rgba(217, 217, 217, 0.58);
+  border: 1px solid white;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.35s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-weight: bolder;
+  text-decoration: none;
+  color: black;
+  text-align: end;
+}
+
+.start-card:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
+}
+
+
+
+.classify {
+  background-image: url(../images/summ.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.summarize {
+  background-image: url(../images/view1.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.scrape {
+  background-image: url(../images/scrape1.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 720px) {
+  .start-screen {
+    flex-direction: column;
+  }
+}

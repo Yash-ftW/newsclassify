@@ -1,0 +1,33 @@
+<html>
+  <body>
+    <table border="1">
+      <thead>
+        <td>ID</td>
+        <td>Title</td>
+        <td>News</td>
+        <td>Link</td>
+        <td>Source</td>
+        <td>Category</td>
+        <td>Date</td>
+        <td>Confidence</td>
+        <td>Summary</td>
+      </thead>
+
+      {% for row in rows %}
+      <tr>
+        <td>{{row["news_id"]}}</td>
+        <td>{{row["title"]}}</td>
+        <td>{{row["news"]}}</td>
+        <td>{{row["link"]}}</td>
+        <td>{{row["source"]}}</td>
+        <td>{{row["category"]}}</td>
+        <td>{{row["date"]}}</td>
+        <td>{{row["confidence"]}}</td>
+        <td>{{row["summary"]}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <a href="/"> Go Back to Home Page </a>
+  </body>
+</html>

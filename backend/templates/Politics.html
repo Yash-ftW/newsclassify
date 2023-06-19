@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data</title>
+  </head>
+  <body>
+    <h1>Data</h1>
+    <p>Id: {{ data[0] }}</p>
+    <p>Column 1: {{ data[1] }}</p>
+    <p>Column 2: {{ data[2] }}</p>
+    <form action="/get_data/{{ next_id }}" method="get">
+      <button type="submit">Next</button>
+    </form>
+  </body>
+</html>

@@ -4,22 +4,22 @@ import "./Cards.css";
 
 function Cards() {
   return (
-    <div className="cards">
+    <div className="cards border-this" id="features">
       <h1 className="text-4xl">Features</h1>
       <div className="cards__container">
         <div className="cards__wrapper">
           <ul className="cards__items">
             <CardItem
               src={require("../images/analysis.jpg")}
-              text="Student Analysis"
-              label="Analysis"
-              path="/features"
+              text="Classify News"
+              label="Classify"
+              path="/#features"
             />
             <CardItem
               src={require("../images/report.jpeg")}
-              text="Report Prediction"
-              label="Prediction"
-              path="/features"
+              text="Summarization"
+              label="Summarize"
+              path="/#features"
             />
           </ul>
           <ul className="cards__items">

@@ -52,9 +52,9 @@ function Footer() {
       <section className="social-media">
         <div className="social-media-wrap">
           <div className="footer-logo">
-            <Link to="/" className="social-logo">
+            <a href="/#" className="social-logo">
               ClassifyMe
-            </Link>
+            </a>
           </div>
           <small className="website-rights">ClassifyMe © 2022</small>
           <div className="social-icons">
