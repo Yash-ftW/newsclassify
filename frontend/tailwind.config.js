@@ -87,7 +87,6 @@ module.exports = {
     },
   },
   variants: {
-    // backgroundColor: ['active'],
     extend: {},
   },
   plugins: [],
