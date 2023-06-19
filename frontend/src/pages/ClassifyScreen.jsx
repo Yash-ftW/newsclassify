@@ -71,7 +71,6 @@ const Form = () => {
                 required
                 placeholder="Enter News"
                 className="news-classnsumm"
-              
               />
             </label>
             <br />
@@ -85,14 +84,19 @@ const Form = () => {
                 min={0}
               />
             </label>
-            <label>
-              Use Model:
-              <select value={field3Value} onChange={handleField3Change}>
+            <label className="model-choose">
+              <h3>Use Model:</h3>
+              <select
+                className="select-style"
+                value={field3Value}
+                onChange={handleField3Change}
+              >
                 <option value="SVM">SVM</option>
                 <option value="KNN">KNN</option>
                 <option value="MNB">MNB</option>
               </select>
             </label>
+
             <br />
             {/* <button type="submit" className="classify-btn">
               Classify & Summarize
@@ -126,13 +130,40 @@ const Form = () => {
                 </button>
 
                 <div className={!conf ? `classify-hidden` : `classify-active`}>
-                  <p className="confi-dis">
-
-                  {JSON.stringify(resp.confidence)}
-                  </p>
-                <div className="tf-box">
-                  Tf_Idf: {JSON.stringify(resp.tf_idf)}
-                </div>
+                  {resp.confidence && (
+                    <div className="confi-dis">
+                      <h3>Confidence Values</h3>
+                      <ul style={{ paddingLeft: 0 }}>
+                        {Object.entries(resp.confidence).map(
+                          ([category, value]) => (
+                            <li
+                              key={category}
+                              style={{
+                                textTransform: "capitalize",
+                              }}
+                            >
+                              <span>{category}:</span>
+                              <span style={{ textAlign: "right" }}>
+                                <strong>{value}</strong>
+                              </span>
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  )}
+                  {resp.tf_idf && (
+                    <div className="tf-box">
+                      <h3>TF-IDF Values</h3>
+                      <ul>
+                        {Object.entries(resp.tf_idf).map(([key, value]) => (
+                          <li key={key}>
+                            Sentence <strong>{key}</strong>: {Math.round(value)}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
