@@ -158,7 +158,7 @@ const Form = () => {
                       <ul>
                         {Object.entries(resp.tf_idf).map(([key, value]) => (
                           <li key={key}>
-                            Sentence <strong>{key}</strong>: {Math.round(value)}
+                            Sentence {key} : <strong> {value} </strong> 
                           </li>
                         ))}
                       </ul>

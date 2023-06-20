@@ -6,7 +6,8 @@ from nltk.corpus import wordnet
 import joblib
 from langdetect import detect
 import pickle
-
+import warnings
+warnings.filterwarnings('ignore')
 import os
 
 model_directory = "backend/base/model"
@@ -17,9 +18,6 @@ base_path = os.path.dirname(os.path.abspath(__file__))
 # Construct the full path to the model directory
 model_path = os.path.join(base_path, model_directory)
 
-# Loading Models
-# nepali_model = joblib.load('base/model/nepali_model_1000.pkl')
-# english_model = joblib.load('base/model/english_model.pkl')
 # Loading idf values
 with open('base/idf_values/nepali_tfidf_1000.model','rb') as f:
     nepali_base_tfidf = pickle.load(f)
@@ -49,13 +47,14 @@ class Classify:
     def __init__(self,news,model_name):
         self.news = news
         self.language = detect(self.news)
-        #self.model_selection = model_selection
+        
+        ## Chosing approrpiate model
         if self.language != "en":
             self.pre_processed_news = self.pre_process_nepali_news()
-            self.model = joblib.load(f"E:\\My Files\\Class\\Sem VII\\Project Work\\news\\newsclassify\\backend\\base\model\\{model_name}_model_nepali.pkl")
+            self.model = joblib.load(f"base/model/{model_name}_model_nepali.pkl")
         else:
             self.pre_processed_news = self.pre_process_english_news()
-            self.model = joblib.load(f"E:\\My Files\\Class\\Sem VII\\Project Work\\news\\newsclassify\\backend\\base\\model\\{model_name}_model_english.pkl")
+            self.model = joblib.load(f"base/model/{model_name}_model_english.pkl")
             
         self.category_class = ['business', 'entertainment', 'politics', 'sport', 'tech']
     def pre_process_nepali_news(self):
@@ -141,6 +140,9 @@ class Classify:
         
         confidence = self.model.predict_proba(tf_idf)
         index = np.argmax(confidence)
-        confidence = [np.around(x*100,2) for x in confidence][0]
+        
+        rounded_confidence = [(np.around(x*100,2)) for x in confidence][0]
+        confidence = [format(x,".2f") for x in rounded_confidence]   
+        
         return(self.category_class[int(index)].upper(),confidence)
             

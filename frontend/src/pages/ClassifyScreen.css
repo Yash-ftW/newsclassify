@@ -130,6 +130,7 @@ form {
 
 .classify-result {
     display: flex;
+    max-width: 70%;
     flex-direction: column;
     justify-content: center;
     align-items: center;

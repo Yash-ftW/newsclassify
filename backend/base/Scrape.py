@@ -4,7 +4,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 import re
 import sqlite3 as sql
 from base.Classification import Classify
-from base.Summarization import Summarize
+from base.SummarizationScrape import SummarizeForScrape
 import requests
 from datetime import datetime
 class ScrapeEkantipur:
@@ -82,7 +82,7 @@ class ScrapeEkantipur:
                 
                 news_sentence_count = news_str.count("।")+1
                 summary_count = int(news_sentence_count * (1/4))
-                summary = Summarize(news_str).summarize_in_sentence_number(summary_count)
+                summary = SummarizeForScrape(news_str).summarize_in_sentence_number(summary_count)
                 confidence = max(confidence)
                 if confidence > 70:
                     self.scraped_dict[count] = {'news_id':news_id,'link':link,'title':title,'news':news_str,'source':source,'category':category,'date':date,'confidence':confidence,'summary':summary}
@@ -108,8 +108,6 @@ class ScrapeEkantipur:
     def scrape_news(self):
         if self.ekantipur_url != "":
             scrape_link = self.get_ekantipur_news_url()
-            print(scrape_link)
-            print("HERE")
             self.get_ekantipur_scraped_news(scrape_link)
             self.create_table()
             for key in self.scraped_dict:
@@ -192,7 +190,7 @@ class ScrapeSetopati:
                 
                 news_sentence_count = news_str.count("।")+1
                 summary_count = int(news_sentence_count * (1/4))
-                summary = Summarize(news_str).summarize_in_sentence_number(summary_count)
+                summary = SummarizeForScrape(news_str).summarize_in_sentence_number(summary_count)
                 confidence = max(confidence)
                 if confidence > 70:
                     self.scraped_dict[count] = {'news_id':news_id,'link':link,'title':title,'news':news_str,'source':source,'category':category,'date':date,'confidence':confidence,'summary':summary}
@@ -297,7 +295,7 @@ class ScrapeBBC:
 
                     news_sentence_count = news_str.count(".")+1
                     summary_count = int(news_sentence_count * (1/4))
-                    summary = Summarize(news_str).summarize_in_sentence_number(summary_count)
+                    summary = SummarizeForScrape(news_str).summarize_in_sentence_number(summary_count)
                     confidence = max(confidence)
                     if confidence > 70:
                         self.scraped_dict[count] = {'news_id':news_id,'link':link,'title':title,'news':news_str,'source':source,'category':category,'date':date,'confidence':confidence,'summary':summary}
@@ -398,7 +396,7 @@ class ScrapeKathmanduPost:
                 category,confidence = Classify(news_str,model_name='SVM').predict_news()
                 news_sentence_count = news_str.count(".")+1
                 summary_count = int(news_sentence_count * (1/4))
-                summary = Summarize(news_str).summarize_in_sentence_number(summary_count)
+                summary = SummarizeForScrape(news_str).summarize_in_sentence_number(summary_count)
                 confidence = max(confidence)
                 if confidence > 70:
                     self.scraped_dict[count] = {'news_id':news_id,'link':link,'title':title,'news':news_str,'source':source,'category':category,'date':date,'confidence':confidence,'summary':summary}
