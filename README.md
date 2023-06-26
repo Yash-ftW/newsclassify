@@ -24,8 +24,8 @@ Extractive Summary using TF-IDF Matrix.
 <h2> Nepali News Classify and Summarize </h2>
 <img src = "https://user-images.githubusercontent.com/85671929/234038522-5b0a523e-0741-4396-8458-876b0587f76e.png">
 
-<h2> English News Scraped </h2>
+<h2> English News Scraped Summarized and Classified </h2>
 <img src = "https://user-images.githubusercontent.com/85671929/234038620-9064dd27-9bef-4327-988e-9460e2a61d74.png ">
 
-<h2> Nepali News Scraped </h2>
+<h2> Nepali News Scraped Summarized and Classified</h2>
 <img src = "https://user-images.githubusercontent.com/85671929/234038728-92cff2db-39f3-479b-8dfe-afdc70191b5e.png">
