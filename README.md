@@ -1,5 +1,5 @@
 # newsclassify
-A Newsify App That Can Classify Summarize and Scrape The News 
+A Newsify App That Can Classify Summarize and Scrape Nepali and English News.
 
 <h1> Appendix </h1>
 Can Classify News on Language 'English' and 'Nepali' using SVM<br>
