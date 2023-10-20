@@ -31,7 +31,7 @@ Extractive Summary using TF-IDF Matrix.
 <img src = "https://user-images.githubusercontent.com/85671929/234038728-92cff2db-39f3-479b-8dfe-afdc70191b5e.png">
 
 <hr>
-If you want acess to trained models and know more about how we trained the models, Feel Free to contact us:
+If you want access to trained models and know more about how we trained the models, Feel Free to contact us:
 
 - [Bibek Thapa](https://www.linkedin.com/in/bibek-thapa-sb1129/)
 - [Yash Maharjan](https://www.linkedin.com/in/yash-m-378975248/)
