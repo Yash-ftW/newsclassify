@@ -33,5 +33,5 @@ Extractive Summary using TF-IDF Matrix.
 <hr>
 If you want acess to trained models and know more about how we trained the models, Feel Free to contact us:
 
-[Bibek Thapa](https://www.linkedin.com/in/bibek-thapa-sb1129/)
-[Yash Maharjan](https://www.linkedin.com/in/yash-m-378975248/)
+-[Bibek Thapa](https://www.linkedin.com/in/bibek-thapa-sb1129/)
+-[Yash Maharjan](https://www.linkedin.com/in/yash-m-378975248/)
