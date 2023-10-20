@@ -24,12 +24,13 @@ Extractive Summary using TF-IDF Matrix.
 <h2> Nepali News Classify and Summarize </h2>
 <img src = "https://user-images.githubusercontent.com/85671929/234038522-5b0a523e-0741-4396-8458-876b0587f76e.png">
 
-If you want acess to trained models and know more about how we trained the models, Feel Free to contact us:
-[Bibek Thapa](https://www.linkedin.com/in/bibek-thapa-sb1129/)
-[Yash Maharjan](https://www.linkedin.com/in/yash-m-378975248/)
-
 <h2> English News Scraped Classified and Summarized </h2>
 <img src = "https://user-images.githubusercontent.com/85671929/234038620-9064dd27-9bef-4327-988e-9460e2a61d74.png ">
 
 <h2> Nepali News Scraped Classified and Summarized </h2>
 <img src = "https://user-images.githubusercontent.com/85671929/234038728-92cff2db-39f3-479b-8dfe-afdc70191b5e.png">
+
+<hr>
+If you want acess to trained models and know more about how we trained the models, Feel Free to contact us:
+[Bibek Thapa](https://www.linkedin.com/in/bibek-thapa-sb1129/)
+[Yash Maharjan](https://www.linkedin.com/in/yash-m-378975248/)
